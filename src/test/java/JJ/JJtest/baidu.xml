@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Company" >
+  <test name="Test1">
+    <classes >
+      <class name="JJ.JJtest.Baidu"/>
+     </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

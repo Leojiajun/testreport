@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>JJ</groupId>
+  <artifactId>JJtest</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>JJtest</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+	  <build> 
+     <plugins>
+      <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<skip>true</skip>
+					<!-- 每次执行测试的时候新建一个jvm -->
+					<forkMode>once</forkMode> 
+					<!-- 明确指定一下JVM的file.encoding --> 
+                    <argLine>-Dfile.encoding=UTF-8</argLine> 	
+				</configuration>
+				<executions>
+					<execution>
+						<id>run-integration-test</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+							<includes>
+								<include>**/integration/**/*.java</include>
+							</includes>
+							<!--<suiteXmlFiles> <suiteXmlFile>testng.xml</suiteXmlFile> </suiteXmlFiles> -->
+						</configuration>
+					</execution>
+					<execution>
+						<id>run-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+							<includes>
+								<include>**/unit/**/*.java</include>
+							</includes>
+							<suiteXmlFiles> 						
+							<suiteXmlFile>src/test/java/JJ/JJtest/baidu.xml</suiteXmlFile>
+							</suiteXmlFiles>
+							<properties>
+                              <property>
+                                <name>usedefaultlisteners</name>
+                                <value>false</value>
+                              </property>
+                              <property>
+                                <name>listener</name>
+                                <value></value>
+                              </property>
+                           </properties>
+						</configuration>
+					</execution>
+				</executions>
+		</plugin>
+     </plugins>
+  </build>
+	
+
+
+  <dependencies>
+	   <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>2.53.0</version>
+    </dependency>
+
+    <!-- 依赖testNg -->
+    <dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>6.9.9</version>
+    </dependency>  
+  
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
